@@ -17,4 +17,4 @@
 
 ## References
 1. [CrewAI docs](https://docs.crewai.com/)
-2. [Youtube Tutorial for poetry setup](https://youtu.be/sPzc6hMg7So?si=zuTlNwuJIcRWkz4Q&t=885)
+2. [Youtube Tutorial for poetry env setup](https://youtu.be/sPzc6hMg7So?si=zuTlNwuJIcRWkz4Q&t=885)
