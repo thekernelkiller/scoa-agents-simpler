@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "scoa-v2-agents-simpler"
+version = "0.1.0"
+description = ""
+authors = ["thekernelkiller <v288399.work@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12, <=3.13"
+crewai = "^0.35.0"
+python-dotenv = "^1.0.1"
+langchain-google-genai = "^0.0.11"
+embedchain = "^0.1.95"
+
+[tool.pyright]
+useLibraryCodeForTypes = true
+exclude = [".cache"]
+
+[tool.ruff]
+select = ['E', 'W', 'F', 'I', 'B', 'C4', 'ARG', 'SIM']
+ignore = ['W291', 'W292', 'W293']
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,4 @@
+.env
+__pycache__/
+trained_agents_data.pkl
+chroma_db/
