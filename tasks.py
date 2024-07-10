@@ -2,7 +2,7 @@ from crewai import Task
 from textwrap import dedent
 
 class SCOATasks:
-    def sc_analysis_task(self, sc_analyst_agent, academic_scores, study_profile, cognitive_inputs):
+    def sc_analysis_task(self, sc_analyst_agent, math_confidence, physics_confidence, chemistry_confidence, study_question, cognitive_question):
         return Task(
             description = dedent(f"""
                 Analyse and find the student's strengths and challenges based on their JEE preparation confidence scores, study profile and cognitive questionnaire responses.
@@ -23,24 +23,8 @@ class SCOATasks:
                 - [Challenge 4 description - based on study profile]
                 - [Challenge 5 description - based on cognitive profile] 
                                  
-                                 
-                Academic Confidence Scores:
-                    Physics:
-                    {SCOAHelpers.format_scores(academic_scores['physics'])}
-                        
-                    Chemistry:
-                    {SCOAHelpers.format_scores(academic_scores['chemistry'])}
-                        
-                    Mathematics:
-                    {SCOAHelpers.format_scores(academic_scores['maths'])}
-                    
-                Study Profile:
-                {SCOAHelpers.format_qa_pairs(study_profile)}
-                    
-                Cognitive Inputs:
-                {SCOAHelpers.format_qa_pairs(cognitive_inputs)}
-
-                {SCOAHelpers.bonus_section()}
+                Inputs:
+                {math_confidence}, {physics_confidence}, {chemistry_confidence}, {study_question}, {cognitive_question}
                 
             """),
             agent = sc_analyst_agent,
@@ -114,30 +98,30 @@ class SCOAHelpers:
     def bonus_section():
         return "If you do your BEST WORK, I'll give you a bonus of ₹10000!"
     
-    @staticmethod
-    def format_scores(scores):
-        return "\n".join([f"- {topic}: {score}" for topic, score in scores.items()])
+    # @staticmethod
+    # def format_scores(scores):
+    #     return "\n".join([f"- {topic}: {score}" for topic, score in scores.items()])
     
-    @staticmethod
-    def format_qa_pairs(qa_dict):
-        formatted_pairs = []
-        for key, value in qa_dict.items():
-            question = SCOAHelpers.get_question(key)
-            formatted_pairs.append(f"Q: {question}\nA: {value}")
-        return "\n\n".join(formatted_pairs)
+    # @staticmethod
+    # def format_qa_pairs(qa_dict):
+    #     formatted_pairs = []
+    #     for key, value in qa_dict.items():
+    #         question = SCOAHelpers.get_question(key)
+    #         formatted_pairs.append(f"Q: {question}\nA: {value}")
+    #     return "\n\n".join(formatted_pairs)
     
-    @staticmethod
-    def get_question(key):
-        questions = {
-            'time_division': "How do you divide your study time among Physics, Chemistry and Mathematics for JEE? (Allocate Percentage)",
-            'mock_test_frequency': "How often do you use mock tests and past question papers for JEE preparation?",
-            'progress_monitoring': "How do you monitor your progress in JEE topics or chapters?",
-            'study_methods': "How do you adjust your study methods for difficult or new JEE topics?",
-            'study_techniques': "What techniques do you use to remember JEE concepts and formulas for a long time? eg: Revise frequently, Mindmap, etc.",
-            'problem_solving_approach': "When faced with complex, multi-step problems in JEE, how likely are you to approach problem-solving systematically, breaking down each step?",
-            'thorough_understanding': "In your JEE preparation, how likely are you to ensure thorough understanding of fundamental concepts before moving on to advanced topics?",
-            'feedback': "How likely are you to integrate feedback from practice tests or teachers into your JEE preparation strategy?",
-            'misconception': "When encountering a misconception or misunderstanding in a JEE concept, how likely are you to identify and resolve it?",
-            'time_management': "How likely are you to effectively manage time during JEE exams, especially in sections with limited time constraints?"
-        }
-        return questions.get(key, "Question not found")
+    # @staticmethod
+    # def get_question(key):
+    #     questions = {
+    #         'time_division': "How do you divide your study time among Physics, Chemistry and Mathematics for JEE? (Allocate Percentage)",
+    #         'mock_test_frequency': "How often do you use mock tests and past question papers for JEE preparation?",
+    #         'progress_monitoring': "How do you monitor your progress in JEE topics or chapters?",
+    #         'study_methods': "How do you adjust your study methods for difficult or new JEE topics?",
+    #         'study_techniques': "What techniques do you use to remember JEE concepts and formulas for a long time? eg: Revise frequently, Mindmap, etc.",
+    #         'problem_solving_approach': "When faced with complex, multi-step problems in JEE, how likely are you to approach problem-solving systematically, breaking down each step?",
+    #         'thorough_understanding': "In your JEE preparation, how likely are you to ensure thorough understanding of fundamental concepts before moving on to advanced topics?",
+    #         'feedback': "How likely are you to integrate feedback from practice tests or teachers into your JEE preparation strategy?",
+    #         'misconception': "When encountering a misconception or misunderstanding in a JEE concept, how likely are you to identify and resolve it?",
+    #         'time_management': "How likely are you to effectively manage time during JEE exams, especially in sections with limited time constraints?"
+    #     }
+    #     return questions.get(key, "Question not found")

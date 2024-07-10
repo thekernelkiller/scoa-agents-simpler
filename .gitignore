@@ -2,3 +2,8 @@
 __pycache__/
 trained_agents_data.pkl
 chroma_db/
+main_x.py
+tasks_x.py
+notes/
+rag/
+tools/
