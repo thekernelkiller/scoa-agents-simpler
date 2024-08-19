@@ -1,4 +1,4 @@
-﻿# SCOA-Agents-Simpler
+﻿# Simplified SCOA using CrewAI Agents
 
 ## Setup
 1. Install [pipx](https://pipx.pypa.io/stable/installation/)
